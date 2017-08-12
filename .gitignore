@@ -15,3 +15,10 @@
 /*-update-signed.zip
 *.pyc
 /update/
+*.swp
+/log/
+.gnupg/
+.bash_history
+.toprc
+.wget-hsts
+packages/secring.gpg
