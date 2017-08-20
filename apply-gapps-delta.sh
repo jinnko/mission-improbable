@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -e
-[ $DEBUG -ge 1 ] && set -x
+[ ${DEBUG:=0} -ge 1 ] && set -x
 
 if [ ! -f "./packages/gapps-delta.tar.xz" ]
 then

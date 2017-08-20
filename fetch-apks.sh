@@ -1,7 +1,7 @@
 #!/bin/bash
 # vim:ts=2 sw=2 sts=2 expandtab:
 
-[ $DEBUG -ge 1 ] && set -x
+[ ${DEBUG:=0} -ge 1 ] && set -x
 
 if [ $NO_TOR -eq 1 ]; then
   APPS=( $(grep -Ev "^[[:space:]]*([#]|$)" apk_url_list.txt | grep -Ev 'orwall|orbot') )

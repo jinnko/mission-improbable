@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -e
-[ $DEBUG -ge 1 ] && set -x
+[ ${DEBUG:=0} -ge 1 ] && set -x
 
 echo "Cloning android-simg2img and super-bootimg forks..."
 

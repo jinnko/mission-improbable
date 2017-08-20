@@ -1,7 +1,7 @@
 #!/bin/sh
 
 set -e
-[ -n "$DEBUG" ] && set -x
+[ ${DEBUG:=0} -ge 1 ] && set -x
 
 DEVICE="${1}"
 shift

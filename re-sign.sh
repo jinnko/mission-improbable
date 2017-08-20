@@ -1,6 +1,6 @@
 #!/bin/bash
 
-[ $DEBUG -ge 1 ] && set -x
+[ ${DEBUG:=0} -ge 1 ] && set -x
 
 EXTRAS_PATH=$(readlink -f ./extras/)
 KEYS_PATH=$(readlink -f ./keys/)

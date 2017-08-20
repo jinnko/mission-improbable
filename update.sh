@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -e
-[ $DEBUG -ge 1 ] && set -x
+[ ${DEBUG:=0} -ge 1 ] && set -x
 
 trap unexpected_exit INT QUIT
 
