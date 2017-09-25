@@ -145,13 +145,17 @@ zip -q -r ../${DEVICE}-update.zip .
 
 cd ..
 
-java -jar ./extras/blobs/signapk.jar -w ./keys/releasekey.x509.pem ./keys/releasekey.pk8 ${DEVICE}-update.zip ${DEVICE}-update-signed.zip
+SIGNED_UPDATE_FILE=$(find . -maxdepth 1 -name "${DEVICE}-factory*.tar.xz" -printf '%f\n' | tail -n1 | sed -e 's/factory/update-signed/' -e 's/tar.xz/zip/')
+java -jar ./extras/blobs/signapk.jar -w ./keys/releasekey.x509.pem ./keys/releasekey.pk8 "${DEVICE}-update.zip" "${SIGNED_UPDATE_FILE}"
+sha512sum "${SIGNED_UPDATE_FILE}" > "${SIGNED_UPDATE_FILE}.sha512"
+rm "${DEVICE}-update.zip"
 
 if [ $SCHEDULED -eq 1 ]; then
     {
         echo
         echo "A new image is available for flashing:"
-        echo "   ${DEVICE}-update-signed.zip"
+        echo "   ${SIGNED_UPDATE_FILE}"
+        echo "   $(< "${SIGNED_UPDATE_FILE}.sha512")"
         echo
         echo "To flash, reboot your device into recovery:"
         echo "  1. Reboot into Fastboot with Power + Volume Down"
@@ -184,7 +188,7 @@ else
       sleep 5
     fi
 
-    adb sideload ${DEVICE}-update-signed.zip
+    adb sideload ${SIGNED_UPDATE_FILE}
 
     echo
     echo "All done! Yay! Select Reboot into System and press power."
