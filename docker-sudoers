@@ -37,3 +37,7 @@ build ALL = (root) NOPASSWD: /bin/rm -fd system/priv-app/ExtServices
 build ALL = (root) NOPASSWD: /bin/rm -f system/priv-app/OneTimeInitializer/OneTimeInitializer.apk
 build ALL = (root) NOPASSWD: /bin/rm -fd system/priv-app/OneTimeInitializer/oat/arm64
 build ALL = (root) NOPASSWD: /bin/rm -fd system/priv-app/Provision
+build ALL = (root) NOPASSWD: /bin/rm -f system/priv-app/Provision/oat/arm64/Provision.vdex
+build ALL = (root) NOPASSWD: /bin/rm -f system/priv-app/OneTimeInitializer/oat/arm64/OneTimeInitializer.vdex
+build ALL = (root) NOPASSWD: /bin/rm -f system/priv-app/ExtServices/oat/arm64/ExtServices.vdex
+build ALL = (root) NOPASSWD: /bin/rm -f system/app/QuickSearchBox/oat/arm64/QuickSearchBox.vdex
