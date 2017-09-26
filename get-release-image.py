@@ -31,7 +31,10 @@ def filterByLatest(releases):
 
 def prepareFactoryData(releases):
     for device, data in releases.items():
-        releases[device]['factory_url'] = releases[device]['url'].replace('ota_update', 'factory').replace('zip', 'tar.xz')
+        if device == 'angler' or device == 'bullhead':
+            releases[device]['factory_url'] = releases[device]['url'].replace('https://update', 'https://legacy').replace('/builds/', '/').replace('ota_update', 'factory').replace('zip', 'tar.xz')
+        else:
+            releases[device]['factory_url'] = releases[device]['url'].replace('ota_update', 'factory').replace('zip', 'tar.xz')
         releases[device]['factory_signature_url'] = "".join([releases[device]['factory_url'], '.sig'])
         releases[device]['factory_filename'] = releases[device]['filename'].replace('ota_update', 'factory').replace('zip', 'tar.xz')
         releases[device]['factory_signature_filename'] = "".join([releases[device]['factory_filename'], '.sig'])
