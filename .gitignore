@@ -12,7 +12,8 @@
 /bullhead-*/
 /flounder-*/
 /*-update.zip
-/*-update-signed.zip
+/*-update-signed-*.zip
+/*-update-signed-*.zip.sha512
 *.pyc
 /update/
 *.swp
