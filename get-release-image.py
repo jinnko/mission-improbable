@@ -2,7 +2,7 @@
 # vim:set ts=4 sw=4 sts=4 expandtab:
 
 from os.path import exists
-from requests import get
+from requests import codes, get
 from subprocess import run, CalledProcessError
 from sys import exit
 import argparse
@@ -20,7 +20,13 @@ def getReleases():
     for device in args.devices:
         url = "/".join([devices[device]['url'], device + '-stable'])
         response[device] = dict()
-        response[device]['raw'] = get(url).text
+        r = get(url)
+        if r.status_code == codes.ok:
+            response[device]['raw'] = r.text
+        else:
+            print('There was a problem getting the release info: HTTP {}: {}'.format(r.status_code, r.text))
+            exit(1)
+
     return response
 
 def prepareFactoryData(releases):
