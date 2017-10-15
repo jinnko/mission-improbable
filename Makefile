@@ -20,7 +20,7 @@ docker: docker-build docker-update
 
 .PHONY: docker-build
 docker-build:
-	@docker build --build-arg UID=$(shell id -u) --build-arg GID=$(shell id -g) --quiet --pull --tag mission-improbable --label "date=$(shell date +%F_%H%M%S)" . >/dev/null
+	@docker build --build-arg UID=$(shell id -u) --build-arg GID=$(shell id -g) --quiet --pull --tag mission-improbable --rm --label "date=$(shell date +%F_%H%M%S)" . >/dev/null
 
 .PHONY: docker-update
 docker-update:
